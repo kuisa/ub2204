@@ -12,6 +12,7 @@ COPY entrypoint.sh /entrypoint.sh
 COPY reboot.sh /usr/local/sbin/reboot
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
+    sudo -i; \
     apt-get update; \
     apt-get install -y tzdata openssh-server sudo curl ca-certificates wget vim net-tools supervisor cron unzip iputils-ping telnet git iproute2 gnupg --no-install-recommends; \
     apt-get clean; \
