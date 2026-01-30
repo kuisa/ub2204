@@ -12,16 +12,15 @@ COPY entrypoint.sh /entrypoint.sh
 COPY reboot.sh /usr/local/sbin/reboot
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
-    usermod --add-subuids 100000-165535 --add-subgids 100000-165535 root; \
-    apt-get update; \
-    apt-get install -y tzdata openssh-server sudo curl ca-certificates wget vim net-tools supervisor cron unzip iputils-ping telnet git iproute2 gnupg --no-install-recommends; \
-    apt-get clean; \
-    apt update; \
-    apt install php-fpm php-dom php-curl php-xml php-mbstring php-zip php-common php-gd nginx wget unzip nano -y; \
-    rm -rf /var/lib/apt/lists/*; \
-    mkdir /var/run/sshd; \
-    chmod +x /entrypoint.sh; \
-    chmod +x /usr/local/sbin/reboot; \
+    sudo apt-get update; \
+    sudo apt-get install -y tzdata openssh-server sudo curl ca-certificates wget vim net-tools supervisor cron unzip iputils-ping telnet git iproute2 gnupg --no-install-recommends; \
+    sudo apt-get clean; \
+    sudo apt update; \
+    sudo apt install php-fpm php-dom php-curl php-xml php-mbstring php-zip php-common php-gd nginx wget unzip nano -y; \
+    sudo rm -rf /var/lib/apt/lists/*; \
+    sudo mkdir /var/run/sshd; \
+    sudo chmod +x /entrypoint.sh; \
+    sudo chmod +x /usr/local/sbin/reboot; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
     echo $TZ > /etc/timezone; \
     curl -fsSL https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb -o cloudflared.deb; \
